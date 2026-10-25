@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penna 羽毛笔</title>
+<link rel="stylesheet" href="penna.css">
+</head>
+<body>
+<div id="app">
+  <header class="bar">
+    <span class="brand">羽毛笔 <b>Penna</b></span>
+    <nav id="pages" class="pages"></nav>
+    <span class="grow"></span>
+    <label class="preset">预设 <select id="preset"></select></label>
+    <button id="open-settings" class="ghost" title="设置">⚙ 设置</button>
+  </header>
+  <main>
+    <section class="left">
+      <div class="tabs">
+        <button data-tab="draft" class="on">成稿</button>
+        <button data-tab="chars">角色库</button>
+        <span class="grow"></span>
+        <span id="draft-tools" class="tools"></span>
+      </div>
+      <div id="draft" class="pane"></div>
+      <div id="chars" class="pane hidden">
+        <div class="row">
+          <input id="char-q" placeholder="角色名：英文、中文、日文都行，例如 初音未来 / saber fate">
+          <button id="char-go">查</button>
+        </div>
+        <div id="char-results"></div>
+        <h4>我存的角色</h4>
+        <div id="char-mine"></div>
+      </div>
+      <footer class="final">
+        <div class="final-head">
+          <span>最终提示词 · <span id="final-page"></span></span>
+          <span class="grow"></span>
+          <select id="join" title="各段怎么连起来（只影响这里的预览，节点里另有同样的选项）">
+            <option>智能</option><option>逗号</option><option>换行</option><option>空格</option>
+          </select>
+          <button id="copy-final" class="ghost">复制</button>
+        </div>
+        <div id="final" class="final-text"></div>
+      </footer>
+    </section>
+    <section class="right">
+      <div class="tabs">
+        <span class="title">Agent 对话</span>
+        <span class="grow"></span>
+        <button id="regen" class="ghost" title="丢掉最后一条回复，重新生成">↻ 重新运行</button>
+        <button id="new-chat" class="ghost" title="清空对话（成稿不动）">＋ 新对话</button>
+      </div>
+      <div id="chat" class="chat"></div>
+      <div class="composer">
+        <div id="quick" class="quick"></div>
+        <div id="composer-extra"></div>
+        <textarea id="input" rows="3" placeholder="说说你想要的画面…  Enter 发送，Shift+Enter 换行，可以粘贴或拖入图片"></textarea>
+        <div class="composer-actions">
+          <button id="attach" class="ghost" title="附上图片">📎 图片</button>
+          <select id="skill-ref" title="点名用某个技能"><option value="">@ 技能</option></select>
+          <span class="grow"></span>
+          <span id="status" class="muted"></span>
+          <button id="stop" class="ghost hidden">■ 停止</button>
+          <button id="send" class="primary">发送</button>
+        </div>
+        <input id="file" type="file" accept="image/*" multiple hidden>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="modal" class="modal hidden"></div>
+<div id="toast" class="toast hidden"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
